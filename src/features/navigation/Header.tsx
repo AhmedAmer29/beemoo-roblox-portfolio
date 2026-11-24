@@ -18,9 +18,9 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <a className={styles.brand} href="#top" onClick={closeMenu} aria-label="BeeMoO home">
-          <span className={styles.mark}>b.</span>
-          <span>BeeMoO</span>
+        <a className={styles.brand} href="#top" onClick={closeMenu} aria-label="Ahmed home">
+          <span className={styles.mark}>a.</span>
+          <span>Ahmed</span>
         </a>
 
         <button

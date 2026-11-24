@@ -13,7 +13,7 @@ export function Hero() {
             I bring every part of a Roblox game <span>together.</span>
           </h1>
           <p className={styles.intro}>
-            I’m BeeMoO. For 6+ years, I’ve moved between gameplay, UI, player data, plots, and the
+            I’m Ahmed, a 19-year-old Roblox developer. For 6+ years, I’ve worked across gameplay, UI, player data, plots, and the
             frameworks that connect them. Take a look at what I’ve shipped, then step inside how I build.
           </p>
           <div className={styles.actions}>
@@ -27,16 +27,16 @@ export function Hero() {
 
           <div className={styles.socialProof} data-reveal>
             <div className={styles.avatarStack} aria-hidden="true">
-              <span>B</span><span>+</span><span>R</span>
+              <span>A</span><span>+</span><span>R</span>
             </div>
             <p><strong>4 released experiences</strong><br />built with teams/studios</p>
           </div>
         </div>
 
-        <div className={styles.visual} aria-label="A look into BeeMoO's connected game systems" data-reveal>
+        <div className={styles.visual} aria-label="A look into Ahmed's connected game systems" data-reveal>
           <div className={styles.visualTopline}>
             <span>SYSTEM MAP</span>
-            <span className={styles.version}>BMO / 01</span>
+            <span className={styles.version}>AH / 01</span>
           </div>
           <div className={styles.map}>
             <div className={`${styles.node} ${styles.nodeProfile}`}>
