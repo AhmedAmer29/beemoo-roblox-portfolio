@@ -20,7 +20,7 @@ export function Header() {
       <div className={styles.inner}>
         <a className={styles.brand} href="#top" onClick={closeMenu} aria-label="Ahmed home">
           <span className={styles.mark}>a.</span>
-          <span>Ahmed</span>
+          <span>BeeMoO</span>
         </a>
 
         <button
