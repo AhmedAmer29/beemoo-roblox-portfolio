@@ -45,16 +45,6 @@ export function Contact() {
     }
   }
 
-  const statusMessage = status === 'sent'
-    ? 'Message sent. Thanks for reaching out.'
-    : status === 'error' && !formEndpoint
-      ? 'The form needs its Formspree endpoint configured before messages can be sent.'
-      : status === 'error'
-        ? 'Something went wrong. Please try again or contact me on Discord.'
-        : status === 'sending'
-          ? 'Sending your message…'
-          : ''
-
   return (
     <section className="section" id="contact" aria-labelledby="contact-title">
       <div className={styles.panel} data-reveal>
@@ -98,9 +88,31 @@ export function Contact() {
           <button className="button buttonPrimary" type="submit" disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
-          <p className={styles.formNote} aria-live="polite">
-            {statusMessage || (formEndpoint ? 'Your email stays private. This form sends through Formspree.' : 'The contact form will be ready after the Formspree endpoint is added.')}
-          </p>
+          {status === 'sent' ? (
+            <div className={`${styles.formNotice} ${styles.formNoticeSuccess}`} role="status" aria-live="polite">
+              <span className={styles.formNoticeIcon}><Icon name="check" size={18} /></span>
+              <span className={styles.formNoticeCopy}>
+                <strong>Message sent!</strong>
+                <span>Thanks for reaching out — I’ll be in touch soon.</span>
+              </span>
+            </div>
+          ) : status === 'error' ? (
+            <div className={`${styles.formNotice} ${styles.formNoticeError}`} role="alert">
+              <span className={styles.formNoticeIcon}><Icon name="close" size={17} /></span>
+              <span className={styles.formNoticeCopy}>
+                <strong>Couldn’t send your message</strong>
+                <span>{formEndpoint ? 'Please try again, or reach out to me on Discord.' : 'The form is not connected yet. Reach out to me on Discord for now.'}</span>
+              </span>
+            </div>
+          ) : (
+            <p className={styles.formNote} aria-live="polite">
+              {status === 'sending'
+                ? 'Sending your message…'
+                : formEndpoint
+                  ? 'Your email stays private. This form sends through Formspree.'
+                  : 'The contact form will be ready after the Formspree endpoint is added.'}
+            </p>
+          )}
         </form>
       </div>
     </section>

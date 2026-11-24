@@ -12,7 +12,7 @@ export default function App() {
     const items = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
     const showAll = () => items.forEach((item) => item.classList.add('is-revealed'))
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    if (!('IntersectionObserver' in window)) {
       showAll()
       return
     }
@@ -24,7 +24,7 @@ export default function App() {
           observer.unobserve(entry.target)
         }
       })
-    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' })
+    }, { threshold: 0.06, rootMargin: '0px 0px -8% 0px' })
 
     items.forEach((item) => observer.observe(item))
     return () => observer.disconnect()

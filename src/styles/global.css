@@ -130,6 +130,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   }
 }
 
+@keyframes revealFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (max-width: 760px) {
   .section { padding: 4.8rem 0; }
   .sectionTint {
@@ -139,6 +144,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  [data-reveal], [data-reveal].is-revealed { opacity: 1; translate: none; scale: 1; filter: none; animation: none; }
+  html { scroll-behavior: smooth; }
+  [data-reveal] { translate: none; scale: 1; filter: none; }
+  [data-reveal].is-revealed {
+    animation: revealFade 520ms ease-out var(--reveal-delay, 0ms) both;
+  }
 }
