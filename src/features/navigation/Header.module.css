@@ -1,0 +1,123 @@
+.header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+  background: rgb(17 14 12 / 88%);
+  backdrop-filter: blur(18px);
+}
+
+.inner {
+  display: flex;
+  width: min(100% - 3rem, var(--page-width));
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  color: var(--text-primary);
+  font-size: 0.98rem;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+}
+
+.mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #1a100b;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.nav a:hover {
+  color: var(--text-primary);
+}
+
+.nav .contactLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.68rem 0.9rem;
+  border: 1px solid rgb(240 169 124 / 28%);
+  border-radius: 999px;
+  color: var(--accent);
+}
+
+.nav .contactLink:hover {
+  border-color: var(--accent);
+  background: rgb(240 169 124 / 8%);
+}
+
+.menuButton {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+@media (max-width: 680px) {
+  .inner {
+    width: min(100% - 2rem, var(--page-width));
+    min-height: 68px;
+  }
+
+  .menuButton {
+    display: inline-flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    display: none;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.65rem 1rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--background);
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.95rem 0.25rem;
+  }
+
+  .nav .contactLink {
+    justify-content: center;
+    margin-top: 0.4rem;
+    padding: 0.85rem;
+  }
+}

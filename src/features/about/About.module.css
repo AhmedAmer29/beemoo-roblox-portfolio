@@ -1,0 +1,33 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.card {
+  min-height: 185px;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgb(255 255 255 / 2%), transparent 72%);
+}
+
+.card h3 {
+  margin: 0 0 0.6rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 560;
+  letter-spacing: -0.035em;
+}
+
+.card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { min-height: 0; }
+}

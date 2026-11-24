@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+*.rbxm
+*.rbxl
+*_Decompiler.com/
