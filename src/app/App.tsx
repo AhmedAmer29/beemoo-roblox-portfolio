@@ -41,9 +41,9 @@ export default function App() {
         <Contact />
       </main>
       <footer className={styles.footer} data-reveal>
-        <a href="#top" className={styles.footerBrand}><span>a.</span> Ahmed</a>
+        <a href="#top" className={styles.footerBrand}><span>b.</span> BeeMoO</a>
         <p>Roblox developer — building systems and experiences.</p>
-        <span className={styles.copyright}>© {new Date().getFullYear()} AHMED</span>
+        <span className={styles.copyright}>© {new Date().getFullYear()} BEEMOO</span>
       </footer>
     </>
   )

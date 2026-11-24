@@ -62,9 +62,9 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <a className={styles.brand} href="#top" onClick={scrollToAnchor} aria-label="b home">
+        <a className={styles.brand} href="#top" onClick={scrollToAnchor} aria-label="BeeMoO home">
           <span className={styles.mark}>b.</span>
-          <span>b</span>
+          <span>BeeMoO</span>
         </a>
 
         <button
