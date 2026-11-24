@@ -12,7 +12,7 @@ const types = new Set([
 
 function renderLine(line: string): ReactNode[] {
   const tokens: ReactNode[] = []
-  const pattern = /--.*$|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b/g
+  const pattern = /--.*$|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b/g
   let cursor = 0
   let key = 0
 
@@ -23,7 +23,7 @@ function renderLine(line: string): ReactNode[] {
 
     let tokenClass = ''
     if (token.startsWith('--')) tokenClass = styles.comment
-    else if (token.startsWith('"') || token.startsWith("'")) tokenClass = styles.string
+    else if (token.startsWith('"') || token.startsWith("'") || token.startsWith('`')) tokenClass = styles.string
     else if (keywords.has(token)) tokenClass = styles.keyword
     else if (/^\d/.test(token)) tokenClass = styles.number
     else if (types.has(token)) tokenClass = styles.type

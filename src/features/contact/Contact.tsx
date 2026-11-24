@@ -72,7 +72,7 @@ export function Contact() {
             </button>
             <a
               className={styles.robloxLink}
-              href="https://www.roblox.com/search/users?keyword=beemoo29"
+              href="https://www.roblox.com/users/1204264807/profile"
               target="_blank"
               rel="noreferrer"
             >

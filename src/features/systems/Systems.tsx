@@ -3,6 +3,7 @@ import { Icon } from '../../components/Icon/Icon'
 import { SectionHeading } from '../../components/SectionHeading/SectionHeading'
 import { frameworks } from '../../data/frameworks'
 import { CodeBlock } from './CodeBlock'
+import { PlotWalkthrough } from './PlotWalkthrough'
 import styles from './Systems.module.css'
 
 type Runtime = 'server' | 'client'
@@ -112,6 +113,7 @@ export function Systems() {
         </div>
       </div>
       <p className={styles.codeNote} data-reveal>Samples are short excerpts and usage patterns from my startup project, lightly edited for readability. Switch between client and server to see how the APIs meet.</p>
+      <PlotWalkthrough />
     </section>
   )
 }

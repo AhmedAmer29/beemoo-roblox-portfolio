@@ -10,8 +10,8 @@ export function Projects() {
         id="work-title"
         eyebrow="01 / The work"
         title="Start with what shipped."
-        description="Four released experiences built with teams/studios and as a solo programmer."
-        aside={<span className={styles.workCount}>4 RELEASED EXPERIENCES</span>}
+        description="Selected released experiences built with teams/studios and as a solo programmer."
+        aside={<span className={styles.workCount}>4+ RELEASED EXPERIENCES</span>}
       />
       <div className={styles.grid}>
         {projects.map((project, index) => <ProjectCard key={project.title} project={project} revealDelay={`${index * 90}ms`} />)}

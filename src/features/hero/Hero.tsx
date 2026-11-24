@@ -29,7 +29,7 @@ export function Hero() {
             <div className={styles.avatarStack} aria-hidden="true">
               <span>A</span><span>+</span><span>R</span>
             </div>
-            <p><strong>4 released experiences</strong><br />built with teams/studios</p>
+            <p><strong>4+ released experiences</strong><br />built with teams/studios</p>
           </div>
         </div>
 
