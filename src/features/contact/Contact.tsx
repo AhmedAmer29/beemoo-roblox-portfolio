@@ -1,77 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Icon } from '../../components/Icon/Icon'
 import styles from './Contact.module.css'
 
 type FormStatus = 'idle' | 'sending' | 'sent' | 'error'
 
-type RecaptchaApi = {
-  ready: (callback: () => void) => void
-  execute: (sitekey: string, options: { action: string }) => Promise<string>
-}
-
-declare global {
-  interface Window {
-    grecaptcha?: RecaptchaApi
-  }
-}
-
 const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim()
-const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY?.trim()
 
 export function Contact() {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [copied, setCopied] = useState(false)
-  const [captchaError, setCaptchaError] = useState('')
-  const [captchaReady, setCaptchaReady] = useState(false)
   const [formError, setFormError] = useState('')
-
-  useEffect(() => {
-    if (!recaptchaSiteKey) return
-
-    let cancelled = false
-    let script = document.querySelector<HTMLScriptElement>('script[data-recaptcha-api]')
-
-    const markReady = () => {
-      const api = window.grecaptcha
-      if (!api) {
-        setCaptchaError('reCAPTCHA could not load. Refresh the page and try again.')
-        return
-      }
-
-      api.ready(() => {
-        if (cancelled) return
-        setCaptchaError('')
-        setCaptchaReady(true)
-      })
-    }
-
-    const handleLoadError = () => {
-      if (!cancelled) setCaptchaError('reCAPTCHA could not load. Check your connection and try again.')
-    }
-
-    if (window.grecaptcha) {
-      markReady()
-    } else if (script) {
-      script.addEventListener('load', markReady)
-      script.addEventListener('error', handleLoadError)
-    } else {
-      script = document.createElement('script')
-      script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(recaptchaSiteKey)}`
-      script.async = true
-      script.defer = true
-      script.dataset.recaptchaApi = 'true'
-      script.addEventListener('load', markReady)
-      script.addEventListener('error', handleLoadError)
-      document.head.appendChild(script)
-    }
-
-    return () => {
-      cancelled = true
-      script?.removeEventListener('load', markReady)
-      script?.removeEventListener('error', handleLoadError)
-    }
-  }, [])
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -82,27 +21,10 @@ export function Contact() {
       return
     }
 
-    if (!recaptchaSiteKey || !captchaReady || !window.grecaptcha) {
-      setFormError(captchaError || 'reCAPTCHA is still loading. Please wait a moment and try again.')
-      setStatus('error')
-      return
-    }
-
     setFormError('')
     setStatus('sending')
     try {
-      const token = await new Promise<string>((resolve, reject) => {
-        const api = window.grecaptcha
-        if (!api) {
-          reject(new Error('reCAPTCHA is unavailable. Please refresh and try again.'))
-          return
-        }
-        api.ready(() => {
-          api.execute(recaptchaSiteKey, { action: 'submit' }).then(resolve, reject)
-        })
-      })
       const body = new FormData(form)
-      body.set('g-recaptcha-response', token)
 
       const response = await fetch(formEndpoint, {
         method: 'POST',
@@ -197,11 +119,7 @@ export function Contact() {
               {status === 'sending'
                 ? 'Sending your message…'
                 : formEndpoint
-                  ? recaptchaSiteKey
-                    ? captchaReady
-                      ? 'Your email stays private. This form uses Formspree and invisible reCAPTCHA.'
-                      : captchaError || 'Loading invisible reCAPTCHA…'
-                    : 'The reCAPTCHA site key is not configured yet.'
+                  ? 'Your email stays private. This form sends through Formspree.'
                   : 'The contact form will be ready after the Formspree endpoint is added.'}
             </p>
           )}
